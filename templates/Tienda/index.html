@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/icon1.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body> 
+    
+
+<div class="userc">
+    <img class="img-responsive" src="{% static 'img/logo2.png' %}" width="65%">
+    <ul>
+        <li><a class="user"><i class="fa fa-fw fa-user"></i>
+            Bienvenido : {{ user.username | upper }}
+        </a></li>
+        <li><a href="/index/agregar_producto"><i class="fa fa-fw fa-plus-square"></i>Añadir Producto</a></li>
+        <li><a href="/index/consultar_producto"><i class="fa fa-fw fa-eye"></i>Ver Productos</a></li>
+        <li><a href="/index/crear_usuario"><i class="fa fa-fw fa-users"></i>Añadir usuario</a></li>
+        <li><a href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out"></i>Salir</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

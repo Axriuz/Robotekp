@@ -1,0 +1,162 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ver.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/icon1.ico" />
+    <script type="text/javascript" src="/static/js/qrcode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>{{producto.Nombre}}</title>
+</head>
+<body>
+    {% if user.is_superuser %}
+    <div class="topnav" id="myTopnav">
+      <a href="/index" class="active"><i class="fa fa-home"></i>Inicio</a>
+      <a href="/index/agregar_producto"><i class="fa fa-fw fa-plus-square"></i>Agregar Nuevo</a>
+      <a href="{% url 'modi_produc' producto.IDP %}"><i class="fa fa-fw fa-pencil"></i>Modificar Producto</a>
+      <a href="{% url 'eli_produc' producto.IDP %}"><i class="fa fa-fw fa-trash-o"></i>Eliminar</a>
+      <a href="/index/consultar_producto"><i class="fa fa-fw fa-eye"></i>Ver Productos</a>
+      <a href="#popup" class="multi" onclick="update_qrcode()">
+        <i class="fa fa-fw fa-qrcode"></i>
+        Ver QR
+      </a>
+      <a href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
+      <a><i class="fa fa-fw fa-user"></i>
+        Bienvenido : {{ user.username | upper }}
+      </a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+      </a>
+  </div>
+      <div class="container">
+        <div id="myCarousel" class="carousel slide" data-interval="false">
+      
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="{{producto.URL_Imagen}}"  style="width:100%; height: 600px;" >
+            </div>
+      
+            <div class="item">
+              <iframe width="100%" height="480" src="{{producto.URL_Video}}" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+            </div>
+          </div>
+      
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        
+        <table id="myTable">
+            <thead>
+              <h1>Detalles del producto</h1>
+                <tr class="header">
+                    <th class="Titles">Nombre</th>
+                    <th class="Titles">Código</th>
+                    <th class="Titles">Precio de venta</th>
+                    <th class="Titles">Descripción</th>    
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tbody">
+                    <td>{{producto.Nombre}}</td>
+                    <td>{{producto.Codigo}}</td>
+                    <td>${{producto.Precio_de_venta}}</td>  
+                    <td>{{producto.Descripcion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="popup" class="overlay">
+        <div id="popupBody">
+            <div class="popuphead">
+                <h2>Descargar QR</h2>
+                <a id="cerrar" href="#">&times;</a>
+            </div>
+            <div id="qr"></div>
+            <a>Clic derecho -> Guardar imagen como</a>
+        </div>
+    </div>
+    <form>
+        <textarea name="msg" rows="10" class="QR">http://192.168.1.64:8000/index/view/{{producto.IDP}}</textarea><br> 
+    </form>
+    {% else  %}
+    <div style="overflow-x:auto;">
+      
+      <table id="myTable">
+          <thead>
+            <h1>Detalles del producto</h1>
+              <tr class="header">
+                  <th class="Titles">Nombre</th>
+                  <th class="Titles">Precio de venta</th>
+                  <th class="Titles">Descripción</th>    
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="tbody">
+                  <td>{{producto.Nombre}}</td>
+                  <td>${{producto.Precio_de_venta}}</td>  
+                  <td>{{producto.Descripcion}}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+    <div class="container">
+      <div id="myCarousel" class="carousel slide" data-interval="false">
+    
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="{{producto.URL_Imagen}}"  style="width:100%; height: 600px;" >
+          </div>
+    
+          <div class="item">
+            <iframe width="100%" height="480" src="{{producto.URL_Video}}" 
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen></iframe>
+          </div>
+        </div>
+    
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+{% endif %}
+</body>
+<script>
+  function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
+</script>
+</html>
+
+

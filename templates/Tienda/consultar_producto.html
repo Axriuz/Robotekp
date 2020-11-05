@@ -1,0 +1,86 @@
+<!DOCTYPE html {% load static %}>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View products</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/consultar.css' %}">
+    <script type="text/javascript" src="/static/js/search.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/icon1.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style type="text/css">
+        input {background: url(/static/img/search.png)}
+    </style>
+
+</head>
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="/index" class="active"><i class="fa fa-home"></i>Inicio</a>
+        <a href="/index/agregar_producto"><i class="fa fa-fw fa-plus-square"></i>Agregar Nuevo</a>
+        <a href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out"></i>Salir</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a class="search">
+            <input type="text" id="myInput1" onkeyup="mySearch1()" placeholder="Search for names..." title="Type in a name" class="searchbar2">
+        </a>
+        <div class="searchbar">
+            <input type="text" id="myInput" onkeyup="mySearch()" placeholder="Search..." title="Type in a name" class="searchbar">
+        </div>
+    </div>
+
+<div style="overflow-x:auto;">
+    <table id="myTable">
+        {% if object_list %}
+        <thead>
+            <tr class="header">
+                <th>Nombre </th>
+                <th>Código</th>
+                <th>Precio de venta</th>
+                <th>Opciones</th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in object_list %}
+            <tr class="tbody">
+                <td>{{producto.Nombre}}</td>
+                <td>{{producto.Codigo}}</td>
+                <td>${{producto.Precio_de_venta}}</td>
+                <td>
+
+                    <ul>
+                        <li><a href="{% url 'modi_produc' producto.IDP %}" class="btn-success">
+                            Editar
+                        </a></li>
+                        <li><a href="{% url 'view_produc' producto.IDP %}" class='btn-ver'>
+                            Ver
+                        </a></li>
+                        <li><a href="{% url 'eli_produc' producto.IDP %}" class="btn-cancel">
+                            Eliminar
+                        </a></li>
+
+                      </ul>
+                </td>  
+            </tr>
+            {% endfor %}
+
+            {% else %}
+            <h1>No hay registros</h1>
+
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+</script>
+</html>
