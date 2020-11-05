@@ -63,19 +63,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Robotekp.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Robotekpdb',
-        'USER': 'root',
-        'PASSWORD': 'sistemas',
-        'HOST':'',
-        'PORT':'', 
-    }
-}
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     "Robotekp\static"
