@@ -62,6 +62,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Robotekp.wsgi.application'
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.path.join(BASE_DIR, 'db.mysql')
+    }
+}
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
