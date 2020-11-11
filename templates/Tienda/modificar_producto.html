@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mod product</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/modd1.css' %}">
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/icon1.ico"/>
     <script type="text/javascript" src="/static/js/embed.js"></script>
+    <script type="text/javascript" src="/static/js/menu.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body background="{% static 'img/pieces-of-lego3.jpg' %}">
@@ -44,39 +46,30 @@
                 </p>
                 <p>
                 <input type="submit" value="Guardar" onclick="embed()">
-                <a id="multi" href="#popup" class="multi"><i class="fa fa-fw fa-film"></i></a>
+                <a id="multi" data-modal-target="#modal" class="multi"><i class="fa fa-fw fa-film"></i></a>
                 </p>
         </div>
     </div>
-    <div id="popup" class="overlay">
-        <div id="popupBody">
-            <div class="popuphead">
-                <h2>Añadir Multimedia</h2>
-                <a id="cerrar" href="#">&times;</a>
-            </div>
-            <div class="popupContent">
-                    {% csrf_token %}
-                    <p>
-                        <label class="popv" for="{{ form.URL_Video.URL_Video }}">URL Video:</label>
-                        {{form.URL_Video}}
-                    </p>
-                    <p>
-                        <label class="popi" for="{{ form.URL_Imagen.URL_Imagen }}">URL Imagen:</label>
-                        {{form.URL_Imagen}}
-                    </p>          
-                    <input type="submit" value="Guardar" onclick="embed2()">
-                </form>
-            </div>
+    <div class="modal" id="modal">
+        <div class="modal-header">
+          <div class="title"><h2>Modificar Multimedia</h2></div>
+          <a id="cerrar" data-close-button class="close-button">&times;</a>
         </div>
+        <div class="modal-body">
+          {% csrf_token %}
+              <p>
+                  <label class="popv" for="{{ form.URL_Video.URL_Video }}">URL Video:</label>
+                  {{form.URL_Video}}
+              </p>
+              <p>
+                  <label class="popi" for="{{ form.URL_Imagen.URL_Imagen }}">URL Imagen:</label>
+                  {{form.URL_Imagen}}
+              </p>
+              <input type="submit" value="Guardar" onclick="embed()">
+          </form>
+          </div>
+      </div>
+      <div id="overlay"></div>
 </body>
-<script>
-    function myFunction() {
-      var x = document.getElementById("myTopnav");
-      if (x.className === "topnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "topnav";
-      }
-    }
-</script>
+<script type="text/javascript" src="/static/js/popup.js"></script>
 </html>

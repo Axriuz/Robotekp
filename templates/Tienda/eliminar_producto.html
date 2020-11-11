@@ -3,8 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/delet.css' %}">
+    <script type="text/javascript" src="/static/js/menu.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/icon1.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Delete</title>
@@ -20,29 +22,20 @@
             <i class="fa fa-bars"></i>
         </a>
     </div>
-
-    <div class="eliminar">
-        <div class="header">
-            <a>¿Eliminar el registro y todos su datos?</a>
-        </div>
-        <div class="content">
-            <form method="POST">
-                {% csrf_token %}
-                {{form.as_p}}
-                <input class="btn-danger" type="submit" value=Aceptar>
-                <a class="btn-default" href="{% url 'ver_producto' %}">Cancelar</a>
-            </form>
+    <div class="container">
+        <div class="container2">
+            <div class="header">
+                <a class="title">¿Eliminar el registro y todos su datos?</a>
+            </div>
+            <div class="content">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input class="btn-danger" type="submit" value=Aceptar>
+                    <a class="btn-default" href="{% url 'ver_producto' %}">Cancelar</a>
+                </form>
+            </div>
         </div>
     </div>
 </body>
-<script>
-    function myFunction() {
-      var x = document.getElementById("myTopnav");
-      if (x.className === "topnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "topnav";
-      }
-    }
-</script>
 </html>
