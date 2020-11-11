@@ -3,49 +3,38 @@
 	padding: 0;
 	  margin: 0;
 }
-
-li{
-	width: 15%;
+a.title{
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 12pt;
+    font-size: 32pt;
 	padding: 12px 12px 12px 0;
 	display: inline-block;
 	margin-top: 6px;
-	color: antiquewhite;
+	color: rgb(15, 9, 0);
 }
-.eliminar{
-	position: absolute;
-	left: 25%;
-	margin-top: 50px;
-	right: 25%;
-	border: 4px solid rgb(0, 0, 0);
-	background-color: #ddd;
+.container{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
-.header{
-	top: 20px;
-	bottom: 20px;
-	left: 20px;
-	right: 20px;
-	background-color: #ddd;
-	font-size: 28px;
-	padding: 10px;
-	margin: 20px;
-	border-radius: 15px;
+.container2{
+    position: relative;
+    width: 60%;
+    padding: 2%;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #CCC;
+    background: rgb(255, 255, 255);
+    margin: 70px;
+    align-items: center;
+    justify-content: center;
 }
-.header a{
-	color: rgb(0, 0, 0);
-}
-.content{
-	top: 20px;
-	bottom: 20px;
-	left: 20px;
-	right: 20px;
 
-	font-size: 28px;
-	padding: 10px;
-	margin: 20px;
-	border-radius: 15px;
-}
+
 input[type=submit], input[type=reset] input[type=checkbox]{
 	background-color: #a51515;
 	border: none;
